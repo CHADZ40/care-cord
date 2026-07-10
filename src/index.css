@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  /* Visible keyboard focus everywhere, dashboard and elder side alike. */
+  :focus-visible {
+    outline: 3px solid theme('colors.signal.DEFAULT');
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Use dvh so the elder view doesn't jump/zoom on mobile browser chrome show/hide. */
+  .h-dvh-safe {
+    height: 100vh;
+    height: 100dvh;
+  }
+  .ruled-page {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 43px,
+      theme('colors.rule') 44px
+    );
+    background-position: 0 6px;
+  }
+}
